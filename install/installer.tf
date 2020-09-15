@@ -54,23 +54,23 @@ EOF
   }
 }
 
-resource "null_resource" "aws_credentials" {
-  provisioner "local-exec" {
-    command = "mkdir -p ~/.aws"
-  }
+//resource "null_resource" "aws_credentials" {
+//  provisioner "local-exec" {
+//    command = "mkdir -p ~/.aws"
+//  }
+//
+//  provisioner "local-exec" {
+//    command = "echo '${data.template_file.aws_credentials.rendered}' > ~/.aws/credentials"
+//  }
+//}
 
-  provisioner "local-exec" {
-    command = "echo '${data.template_file.aws_credentials.rendered}' > ~/.aws/credentials"
-  }
-}
-
-data "template_file" "aws_credentials" {
-  template = <<-EOF
-[default]
-aws_access_key_id = ${var.aws_access_key_id}
-aws_secret_access_key = ${var.aws_secret_access_key}
-EOF
-}
+//data "template_file" "aws_credentials" {
+//  template = <<-EOF
+//[default]
+//aws_access_key_id = ${var.aws_access_key_id}
+//aws_secret_access_key = ${var.aws_secret_access_key}
+//EOF
+//}
 
 
 data "template_file" "install_config_yaml" {
@@ -99,7 +99,7 @@ platform:
   aws:
     region: ${var.aws_region}
 pullSecret: '${file(var.openshift_pull_secret)}'
-sshKey: '${tls_private_key.installkey.public_key_openssh}'
+sshKey: '${data.tls_public_key.installkey.public_key_openssh}'
 %{if var.airgapped["enabled"]}imageContentSources:
 - mirrors:
   - ${var.airgapped["repository"]}
@@ -124,7 +124,6 @@ resource "null_resource" "generate_manifests" {
 
   depends_on = [
     local_file.install_config,
-    null_resource.aws_credentials,
     null_resource.openshift_installer,
   ]
 

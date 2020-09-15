@@ -6,6 +6,11 @@ variable "availability_zones" {
 variable "az_to_subnet_id" {
   type        = map(string)
   description = "Map from availability zone name to the ID of the subnet in that availability zone"
+  default = {
+    "eu-west-1a" = "subnet-0ba8130fd0f50889d"
+    "eu-west-1b" = "subnet-03757d0625a99888a"
+    "eu-west-1c" = "subnet-03757d0625a99888a"
+  }
 }
 
 variable "cluster_id" {
@@ -80,3 +85,9 @@ and therefore are force to implicitly assume that the list is of aws_lb_target_g
 helps to decide if the target_group_arns is of length (target_group_arns_length) or (target_group_arns_length - 1)
 EOF
 }
+
+variable "key_name" {
+  type = string
+  description = "key name for linking to instances"
+}
+

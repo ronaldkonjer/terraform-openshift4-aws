@@ -117,6 +117,8 @@ resource "aws_instance" "master" {
     var.tags,
   )
 
+//  key_name = var.key_name
+
   root_block_device {
     volume_type = var.root_volume_type
     volume_size = var.root_volume_size

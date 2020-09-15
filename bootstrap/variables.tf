@@ -78,3 +78,13 @@ variable "publish_strategy" {
   type        = string
   description = "The publishing strategy for endpoints like load balancers"
 }
+
+variable "private_key" {
+  type = string
+  description = "ssh key"
+}
+
+variable "key_name" {
+  type = string
+  description = "key name for linking to instances"
+}

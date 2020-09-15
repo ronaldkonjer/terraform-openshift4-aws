@@ -136,6 +136,8 @@ resource "aws_instance" "bootstrap" {
     var.tags,
   )
 
+//  key_name = var.key_name
+
   root_block_device {
     volume_type = var.volume_type
     volume_size = var.volume_size

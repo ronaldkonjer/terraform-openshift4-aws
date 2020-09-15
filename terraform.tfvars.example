@@ -4,6 +4,7 @@ base_domain = "example.com"
 openshift_pull_secret = "./openshift_pull_secret.json"
 openshift_installer_url = "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest"
 
+aws_profile = "default"
 aws_access_key_id = "AAAA"
 aws_secret_access_key = "AbcDefGhiJkl"
 aws_ami = "ami-06f85a7940faa3217"

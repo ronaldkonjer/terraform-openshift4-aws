@@ -8,6 +8,7 @@ locals {
 }
 
 provider "aws" {
+  profile = var.aws_profile
   region = var.aws_region
 
   # Validation of AWS Bahrain region was added in AWS TF provider v2.22
@@ -109,6 +110,8 @@ module "bootstrap" {
   vpc_cidrs                = module.vpc.vpc_cidrs
   vpc_security_group_ids   = [module.vpc.master_sg_id]
   publish_strategy         = var.aws_publish_strategy
+  private_key              = module.installer.private_ssh_key
+  key_name                 = module.installer.key_name
 
   tags = local.tags
 }
@@ -133,4 +136,6 @@ module "masters" {
   ec2_ami                  = aws_ami_copy.main.id
   user_data_ign            = module.installer.master_ign
   publish_strategy         = var.aws_publish_strategy
+
+  key_name                 = module.installer.key_name
 }

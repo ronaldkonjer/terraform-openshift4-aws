@@ -98,6 +98,7 @@ variable "aws_region" {
   description = "The target AWS region for the cluster."
 }
 
+
 variable "aws_azs" {
   type = list(string)
   description = "The availability zones in which to create the nodes."
@@ -120,6 +121,7 @@ variable "aws_private_subnets" {
   default = null
   description = "(optional) Existing private subnets into which the cluster should be installed."
 }
+
 
 variable "aws_publish_strategy" {
   type = string

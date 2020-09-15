@@ -14,6 +14,11 @@ EOF
   default     = "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest"
 }
 
+variable "aws_profile" {
+  type        = string
+  description = "AWS profile"
+}
+
 variable "aws_access_key_id" {
   type        = string
   description = "AWS access key"

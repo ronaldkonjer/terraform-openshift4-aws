@@ -12,6 +12,12 @@ output "az_to_private_subnet_id" {
 
 output "az_to_public_subnet_id" {
   value = zipmap(data.aws_subnet.public.*.availability_zone, data.aws_subnet.public.*.id)
+//  value = {
+//    "eu-west-1a" = "subnet-0ba8130fd0f50889d"
+//    "eu-west-1b" = "subnet-03757d0625a99888a"
+//    "eu-west-1c" = "subnet-03757d0625a99888a"
+//  }
+
 }
 
 output "public_subnet_ids" {
